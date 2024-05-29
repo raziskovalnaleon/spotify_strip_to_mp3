@@ -23,6 +23,7 @@ myclient = Client(CLIENT_ID, CLIENT_SECRET)
 final_track_list = list()
 
 len_for_precent = len(sp.playlist_tracks(PLAYLIST_URI)["items"])
+print(f"{len_for_precent} songs on this album")
 # Fetching all the songs names, youtube links 
 for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
     track_name = track["track"]["name"]

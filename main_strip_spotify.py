@@ -50,13 +50,14 @@ for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
     track_uri = track["track"]["uri"]
     artist_name = track["track"]["artists"][0]["name"]
 
-    search_word = f"{artist_name}{track_name}"
+    search_word = f"{track_name}{artist_name}"
     allSearch = Search(search_word, limit = 1)
     # print(track)
     # print(f"{track_uri}---{track_name}---{artist_uri}---{artist_name}")
     final_track_list.append(f"{track_name},{artist_name},{track_uri},{allSearch.result()['result'][0]['link']}")
     precent_for_show = ((x + 1) / len_for_precent) * 100
     print(f"{int(precent_for_show)}% completed")
+    
 # Writing data int .txt file
 with open('links.txt', 'a') as f:
     for idi, item in enumerate(final_track_list):

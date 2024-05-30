@@ -8,11 +8,30 @@ from youtubesearchpython import Search
 
 
 
-CLIENT_ID = 'client_id'
-CLIENT_SECRET = 'client_secret'
+CLIENT_ID = 'fd358b97cd2e423e8ddaa71d03bcf9f2'
+CLIENT_SECRET = 'e3b7153da9ce4e568cd449cb936ab0e3'
+AUTH_URL = 'https://accounts.spotify.com/api/token'
 # Here at PLAYLIST_LINK you can put whatever spotify link of album you want. WARNING: it will strip 100 songs per round
 # PLAYLIST_LINK = "https://open.spotify.com/playlist/3vP9BQxraLqDolt4wuiB0C?si=d5d53b7325944827" # rock 1 --> 100 songs 
-PLAYLIST_LINK = "https://open.spotify.com/playlist/2myW2EQLU9T5h6s6hKvOid?si=e72ff2584e6045cb" # rock 2 --> 47 songs
+
+# here you can choose which album you will download
+file_links = open('playlist_links.txt', 'r')
+
+final_links_list = list()
+link_list = file_links.read().split('\n')
+print("Choose which album you want to download")
+for idi, item in enumerate(link_list):
+    if(item == ''):
+        link_list.remove(item)
+    else:
+        # print(item.split(','))
+        final_links_list.append(item.split(',')[1])
+        print(f"{idi + 1}-Name:{item.split(',')[0]}-Link:{item.split(',')[1]}")
+
+user_choice = int(input())
+PLAYLIST_LINK = final_links_list[user_choice - 1]
+file_links.close()
+
 PLAYLIST_URI = PLAYLIST_LINK.split("/")[-1].split("?")[0]
 
 #Authentication - without user
@@ -25,6 +44,7 @@ final_track_list = list()
 len_for_precent = len(sp.playlist_tracks(PLAYLIST_URI)["items"])
 print(f"{len_for_precent} songs on this album")
 # Fetching all the songs names, youtube links 
+
 for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
     track_name = track["track"]["name"]
     track_uri = track["track"]["uri"]

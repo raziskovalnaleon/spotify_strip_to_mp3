@@ -1,0 +1,2 @@
+rock2,https://open.spotify.com/playlist/2myW2EQLU9T5h6s6hKvOid?si=e72ff2584e6045cb
+rock1,https://open.spotify.com/playlist/3vP9BQxraLqDolt4wuiB0C?si=fecdcfbe961f4b95

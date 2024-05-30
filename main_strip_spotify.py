@@ -30,8 +30,7 @@ for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
     track_uri = track["track"]["uri"]
     artist_name = track["track"]["artists"][0]["name"]
 
-    track = myclient.search(track_name).get_tracks()[0]
-    search_word = f"{artist_name}{track.name}"
+    search_word = f"{artist_name}{track_name}"
     allSearch = Search(search_word, limit = 1)
     # print(track)
     # print(f"{track_uri}---{track_name}---{artist_uri}---{artist_name}")

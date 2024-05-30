@@ -8,7 +8,7 @@ CLIENT_SECRET = 'client_secret'
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 
-# POST
+# This creates access token that expires after aproximetly 1 hour
 auth_response = requests.post(AUTH_URL, {
     'grant_type': 'client_credentials',
     'client_id': CLIENT_ID,

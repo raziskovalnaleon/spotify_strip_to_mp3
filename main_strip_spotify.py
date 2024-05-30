@@ -8,8 +8,8 @@ from youtubesearchpython import Search
 
 
 
-CLIENT_ID = 'fd358b97cd2e423e8ddaa71d03bcf9f2'
-CLIENT_SECRET = 'e3b7153da9ce4e568cd449cb936ab0e3'
+CLIENT_ID = 'client_id'
+CLIENT_SECRET = 'client_secret'
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 # Here at PLAYLIST_LINK you can put whatever spotify link of album you want. WARNING: it will strip 100 songs per round
 # PLAYLIST_LINK = "https://open.spotify.com/playlist/3vP9BQxraLqDolt4wuiB0C?si=d5d53b7325944827" # rock 1 --> 100 songs 

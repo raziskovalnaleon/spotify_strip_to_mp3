@@ -7,9 +7,11 @@ from youtubesearchpython import Search
 import os
 from pytube import YouTube
 
+# This is compact version of all .py files and it will create access token 
+# and download spotify album that you manually put in
 
-CLIENT_ID = 'fd358b97cd2e423e8ddaa71d03bcf9f2'
-CLIENT_SECRET = 'e3b7153da9ce4e568cd449cb936ab0e3'
+CLIENT_ID = 'client_id'
+CLIENT_SECRET = 'client_secret'
 
 AUTH_URL = 'https://accounts.spotify.com/api/token'
 
@@ -29,11 +31,8 @@ access_token = auth_response_data['access_token']
 print(f"Access token: {access_token}")
 print('-'*80)
 
-CLIENT_ID = 'fd358b97cd2e423e8ddaa71d03bcf9f2'
-CLIENT_SECRET = 'e3b7153da9ce4e568cd449cb936ab0e3'
-AUTH_URL = 'https://accounts.spotify.com/api/token'
-
-PLAYLIST_LINK = "https://open.spotify.com/playlist/2myW2EQLU9T5h6s6hKvOid?si=e72ff2584e6045cb"
+# Here you have to manually put in spotify album link
+PLAYLIST_LINK = "spotify album link"
 PLAYLIST_URI = PLAYLIST_LINK.split("/")[-1].split("?")[0]
 
 #Authentication - without user
@@ -43,10 +42,11 @@ myclient = Client(CLIENT_ID, CLIENT_SECRET)
 
 final_track_list = list()
 
+# Gets the length of spotify album for later calculating of percent
 len_for_precent = len(sp.playlist_tracks(PLAYLIST_URI)["items"])
 print(f"{len_for_precent} songs on this album")
-# Fetching all the songs names, youtube links 
 
+# Fetching all the songs names and then searching them on youtube to get youtube url
 for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
     track_name = track["track"]["name"]
     track_uri = track["track"]["uri"]
@@ -54,9 +54,10 @@ for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
 
     search_word = f"{track_name}{artist_name}"
     allSearch = Search(search_word, limit = 1)
-    # print(track)
-    # print(f"{track_uri}---{track_name}---{artist_uri}---{artist_name}")
+    
+    # adds song to the list
     final_track_list.append(f"{track_name},{artist_name},{track_uri},{allSearch.result()['result'][0]['link']}")
+    # Calculates percent to show
     precent_for_show = ((x + 1) / len_for_precent) * 100
     print(f"{int(precent_for_show)}% completed")
 # Writing data int .txt file
@@ -68,7 +69,7 @@ with open('links.txt', 'a') as f:
         else:
             f.write(item + "\n")
 
-
+# Download section
 print('*'*80)
 print("DOWNLOAD STARTED")
 print('*'*80)

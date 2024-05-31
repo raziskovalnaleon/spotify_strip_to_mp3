@@ -63,10 +63,7 @@ for x,track in enumerate(sp.playlist_tracks(PLAYLIST_URI)["items"]):
 with open('links.txt', 'a') as f:
     for idi, item in enumerate(final_track_list):
         print(f"{idi + 1}-{item.split(',')}")
-        if(len_for_precent == idi + 1):
-            f.write(item)
-        else:
-            f.write(item + "\n")
+        f.write(item + "\n")
 
 print("Do you want to download songs right now (y/n)")
 usr_ans = input().casefold()

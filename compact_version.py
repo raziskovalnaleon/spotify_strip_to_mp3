@@ -79,13 +79,7 @@ if usr_ans == 'y':
 
     downloadable_url_list = list()
     # Downloading songs
-    for item in final_track_list:
-        # print(item.split(','))
-        try:
-            downloadable_url_list.append(item.split(',')[3])
-        except:
-            print('No downloadable links on .txt file')
-            break
+    downloadable_url_list = [item.split(',')[3] for item in final_track_list if item != '']
     if(len(downloadable_url_list) != 0):
         for idlink, link in enumerate(downloadable_url_list):
             try:
